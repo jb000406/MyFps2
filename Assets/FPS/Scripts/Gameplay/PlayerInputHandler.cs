@@ -20,6 +20,10 @@ namespace Unity.FPS.Gameplay
         [Tooltip("Used to flip the horizontal input axis")]
         public bool InvertXAxis = false;
 
+        private bool fireInputWasHeld = false;
+        private bool aimInputWasHeld = false;
+
+
 
         void Start()
         {   
@@ -29,7 +33,8 @@ namespace Unity.FPS.Gameplay
 
         void LateUpdate()
         {
-            
+            fireInputWasHeld = GetFireInputHeld();
+            aimInputWasHeld = GetAimInputHeld();
         }
 
         public bool CanProcessInput()
@@ -162,18 +167,77 @@ namespace Unity.FPS.Gameplay
             return 0;
         }
 
+        //조준 시작
+        public bool GetAimInputDown()
+        {
+            if (CanProcessInput())
+            {
+                return GetAimInputHeld() == true && aimInputWasHeld == false;
+            }
+
+            return false;
+        }
+
+        //조준 끝
+        public bool GetAimInputUp()
+        {
+            if (CanProcessInput())
+            {
+                return GetAimInputHeld() == false && aimInputWasHeld == true;
+            }
+
+            return false;
+        }
+
         //조준 - 마우스 우클릭하는 동안
         public bool GetAimInputHeld()
         {
             if (CanProcessInput())
             {
-                return Input.GetButtonDown(GameConstants.k_ButtonNameAim);
+                return Input.GetButton(GameConstants.k_ButtonNameAim);
             }
 
 
              return false;
         }
+        
+        public bool GetFireInputDown()
+        {
+            if (CanProcessInput())
+            {
+                return GetFireInputHeld() == true && fireInputWasHeld == false;
+                //return Input.GetButtonDown(GameConstants.k_ButtonNameFire);
+            }
+
+
+            return false ;
+        }
+
+        public bool GetFireInputUp()
+        {
+            if (CanProcessInput())
+            {
+                return GetFireInputHeld() == false && fireInputWasHeld == true;
+                //return Input.GetButtonUp(GameConstants.k_ButtonNameFire);
+            }
+
+
+            return false;
+        }
+
+        public bool GetFireInputHeld()
+        {
+            if (CanProcessInput())
+            {
+                return Input.GetButton(GameConstants.k_ButtonNameFire);
+            }
+
+
+            return false;
+        }
 
         
+
+
     }
 }
