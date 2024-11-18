@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,18 +10,12 @@ namespace Unity.FPS.Game
     {
         #region Variables
         public GameObject Owner { get; private set; }   //발사한 주체
-
         public Vector3 InitialPosition { get; private set; }
-
-        public Vector3 InitailDirection { get; private set; }
-
+        public Vector3 InitialDirection { get; private set; }
         public Vector3 InheritedMuzzleVelocity { get; private set; }
-
         public float InitialCharge { get; private set; }
 
-        public UnityAction OnShoot;                         //발사시 등록된 함수 호출
-
-
+        public UnityAction OnShoot;                     //발사시 등록된 함수 호출
         #endregion
 
         public void Shoot(WeaponController controller)
@@ -31,7 +23,7 @@ namespace Unity.FPS.Game
             //초기화
             Owner = controller.Owner;
             InitialPosition = this.transform.position;
-            InitailDirection = this.transform.forward;
+            InitialDirection = this.transform.forward;
             InheritedMuzzleVelocity = controller.MuzzleWorldVelocity;
             InitialCharge = controller.CurrentCharge;
 

@@ -1,17 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.FPS.Gameplay;
 using UnityEngine;
 
 namespace Unity.FPS.UI
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class ScopeUIManager : MonoBehaviour
     {
         #region Variables
-        public GameObject ScopeUI;
+        public GameObject scopeUI;
 
         private PlayerWeaponsManager weaponsManager;
         #endregion
@@ -20,21 +15,19 @@ namespace Unity.FPS.UI
         {
             //참조
             weaponsManager = GameObject.FindObjectOfType<PlayerWeaponsManager>();
-
-            //이벤트 함수 등록
+            //Action 함수 등록
             weaponsManager.OnScopedWeapon += OnScope;
             weaponsManager.OffScopedWeapon += OffScope;
         }
 
         public void OnScope()
         {
-            ScopeUI.SetActive(true);
+            scopeUI.SetActive(true);
         }
 
         public void OffScope()
-        {
-            ScopeUI.SetActive(false);
+        { 
+            scopeUI.SetActive(false);
         }
-
     }
 }

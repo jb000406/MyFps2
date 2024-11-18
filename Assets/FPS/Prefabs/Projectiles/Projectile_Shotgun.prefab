@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3659995153115176982}
-  - component: {fileID: -1345325532733128191}
+  - component: {fileID: 4805732695468578066}
   m_Layer: 0
   m_Name: Projectile_Shotgun
   m_TagString: Untagged
@@ -31,9 +31,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8402172112652589804}
+  - {fileID: 1135791333161367127}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1345325532733128191
+--- !u!114 &4805732695468578066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,9 +43,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3659995153115176983}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1588e99a42c4f4d4789f4c770b84768c, type: 3}
+  m_Script: {fileID: 11500000, guid: ce3940a4faba2ae4999e546000ca1c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 150
+  gravityDown: 20
+  root: {fileID: 3659995153115176982}
+  tip: {fileID: 1135791333161367127}
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  impackVfxPrefab: {fileID: 7655095426451682942, guid: 358eca6adc32a89459c54b6b62d9c825,
+    type: 3}
+  impactVfxLifeTime: 5
+  impactSfxClip: {fileID: 0}
 --- !u!1 &5564024855854763701
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,11 +82,11 @@ Transform:
   m_GameObject: {fileID: 5564024855854763701}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 10, y: 10, z: 101.4293}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8402172112652589804}
+  m_Father: {fileID: 3659995153115176982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8402172112652879564
 GameObject:
@@ -106,8 +118,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1135791333161367127}
+  m_Children: []
   m_Father: {fileID: 3659995153115176982}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8402172112653884108

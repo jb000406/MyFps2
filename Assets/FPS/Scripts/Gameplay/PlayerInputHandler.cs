@@ -23,8 +23,6 @@ namespace Unity.FPS.Gameplay
         private bool fireInputWasHeld = false;
         private bool aimInputWasHeld = false;
 
-
-
         void Start()
         {   
             Cursor.lockState = CursorLockMode.Locked;
@@ -140,21 +138,20 @@ namespace Unity.FPS.Gameplay
             return false;
         }
 
-
         //무기 교체
         public int GetSwitchWeaponInput()
         {
-            if(CanProcessInput())
+            if (CanProcessInput())
             {
                 if(Input.GetAxis(GameConstants.k_AxisNameNextWeapon) > 0f)
                 {
                     return 1;
                 }
-                else if(Input.GetAxis(GameConstants.k_AxisNameNextWeapon) < 0f)
+                else if (Input.GetAxis(GameConstants.k_AxisNameNextWeapon) < 0f)
                 {
                     return -1;
                 }
-                else if(Input.GetAxis(GameConstants.k_MouseAxisNameScrollWheel) > 0f)
+                else if (Input.GetAxis(GameConstants.k_MouseAxisNameScrollWheel) > 0f)
                 {
                     return -1;
                 }
@@ -197,10 +194,10 @@ namespace Unity.FPS.Gameplay
                 return Input.GetButton(GameConstants.k_ButtonNameAim);
             }
 
-
-             return false;
+            return false;
         }
-        
+
+        //파이어 버튼 누르기 시작
         public bool GetFireInputDown()
         {
             if (CanProcessInput())
@@ -208,11 +205,10 @@ namespace Unity.FPS.Gameplay
                 return GetFireInputHeld() == true && fireInputWasHeld == false;
                 //return Input.GetButtonDown(GameConstants.k_ButtonNameFire);
             }
-
-
-            return false ;
+            return false;
         }
 
+        //파이어 버튼 누르기 끝
         public bool GetFireInputUp()
         {
             if (CanProcessInput())
@@ -220,23 +216,18 @@ namespace Unity.FPS.Gameplay
                 return GetFireInputHeld() == false && fireInputWasHeld == true;
                 //return Input.GetButtonUp(GameConstants.k_ButtonNameFire);
             }
-
-
             return false;
         }
 
+        //파이어 버튼 누르는 중
         public bool GetFireInputHeld()
         {
             if (CanProcessInput())
             {
                 return Input.GetButton(GameConstants.k_ButtonNameFire);
             }
-
-
             return false;
         }
-
-        
 
 
     }

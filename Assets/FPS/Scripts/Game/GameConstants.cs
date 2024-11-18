@@ -1,5 +1,8 @@
 ﻿namespace Unity.FPS.Game
 {
+    /// <summary>
+    /// 인풋과 관련된 string 상수 선언
+    /// </summary>
     public class GameConstants
     {
         // all the constant string used across the game

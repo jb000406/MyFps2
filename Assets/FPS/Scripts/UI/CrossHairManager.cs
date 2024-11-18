@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.FPS.Game;
-using Unity.FPS.Gameplay;
 using UnityEngine;
 using UnityEngine.UI;
+using Unity.FPS.Game;
+using Unity.FPS.Gameplay;
 
 namespace Unity.FPS.UI
 {
-
-    public class CrossHairManager : MonoBehaviour
+    public class CrosshairManager : MonoBehaviour
     {
         #region Variables
-        public Image crosshairImage;                        //크로스헤어 UI 이미지
-        public Sprite nullCrosshairSprite;                  //엑티브한 무기가 없을때
+        public Image crosshairImage;                    //크로스헤어 UI 이미지
+        public Sprite nullCrosshairSprite;              //액티브한 무기가 없을때
 
         private RectTransform crosshairRectTransform;
 
@@ -20,7 +17,7 @@ namespace Unity.FPS.UI
         private CrossHairData crosshairTarget;          //타겟팅 되었을때
 
         private CrossHairData crosshairCurrent;         //실질적으로 그리는 크로스헤어
-        [SerializeField] private float crosshairUpdateShrpness = 5.0f;   //Lerp 변수 
+        [SerializeField] private float crosshairUpdateShrpness = 5.0f;   //Lerp 변수
 
         private PlayerWeaponsManager weaponsManager;
 
@@ -31,8 +28,7 @@ namespace Unity.FPS.UI
         {
             //참조
             weaponsManager = GameObject.FindObjectOfType<PlayerWeaponsManager>();
-
-            //엑티브한 무기 크로스 헤어 보이기
+            //액티브한 무기 크로스 헤어 보이기
             OnWeaponChanged(weaponsManager.GetActiveWeapon());
 
             weaponsManager.OnSwitchToWeapon += OnWeaponChanged;
@@ -45,20 +41,20 @@ namespace Unity.FPS.UI
             wasPointingAtEnemy = weaponsManager.IsPointingAtEnemy;
         }
 
-        //크로스헤어 그리기
+        //크로스 헤어 그리기
         void UpdateCrosshairPointingAtEnemy(bool force)
         {
             if (crosshairDefault.CrossHairSprite == null)
                 return;
 
             //평상시?, 타겟팅?
-            if(force || wasPointingAtEnemy == false && weaponsManager.IsPointingAtEnemy == true) //적을 포착하는 순간
+            if((force || wasPointingAtEnemy == false) && weaponsManager.IsPointingAtEnemy == true) //적을 포착하는 순간
             {
                 crosshairCurrent = crosshairTarget;
                 crosshairImage.sprite = crosshairCurrent.CrossHairSprite;
                 crosshairRectTransform.sizeDelta = crosshairCurrent.CrossHairSize * Vector2.one;
             }
-            else if (force || wasPointingAtEnemy == true && weaponsManager.IsPointingAtEnemy == false)   //적을 놓치는 순간
+            else if ((force || wasPointingAtEnemy == true) &&  weaponsManager.IsPointingAtEnemy == false) //적을 놓치는 순간
             {
                 crosshairCurrent = crosshairDefault;
                 crosshairImage.sprite = crosshairCurrent.CrossHairSprite;
@@ -71,20 +67,17 @@ namespace Unity.FPS.UI
                 crosshairUpdateShrpness * Time.deltaTime) * Vector2.one;
         }
 
-        //무기가 바뀔때마다 crosshairImage를 각각의 무기 CrossHair 이미지로 바꾸기
+        //무기가 바뀔때마다 crosshairImage를 각각의 무기 CrossHair이미지로 바꾸기
         void OnWeaponChanged(WeaponController newWeapon)
         {
-            if (newWeapon)
+            if(newWeapon)
             {
                 crosshairImage.enabled = true;
                 crosshairRectTransform = crosshairImage.GetComponent<RectTransform>();
 
-                //엑티브 무기의 크로스헤어 정보 가져오기
+                //액티브 무기의 크로스헤어 정보 가져오기
                 crosshairDefault = newWeapon.crosshairDefault;
-                crosshairTarget = newWeapon.crosshairTargetInSight;
-                
-
-                //CrosshairImage.sprite = newWeapon.crosshairDefault.CrossHairSprite;
+                crosshairTarget = newWeapon.crosshairTargetInSight;                
             }
             else
             {
@@ -99,8 +92,6 @@ namespace Unity.FPS.UI
             }
 
             UpdateCrosshairPointingAtEnemy(true);
-
         }
-
     }
 }

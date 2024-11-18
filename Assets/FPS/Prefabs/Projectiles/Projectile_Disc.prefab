@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 106790115311484948}
   - component: {fileID: 106790115311484949}
   - component: {fileID: 106790115311484954}
-  - component: {fileID: 7870969847024678075}
+  - component: {fileID: 3274817856681570123}
+  - component: {fileID: 4365667792891970693}
+  - component: {fileID: 6083676768477013058}
+  - component: {fileID: 6249137661770119905}
   m_Layer: 0
   m_Name: Projectile_Disc
   m_TagString: Untagged
@@ -85,7 +88,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7870969847024678075
+--- !u!114 &3274817856681570123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,9 +97,108 @@ MonoBehaviour:
   m_GameObject: {fileID: 106790115311484953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1588e99a42c4f4d4789f4c770b84768c, type: 3}
+  m_Script: {fileID: 11500000, guid: ce3940a4faba2ae4999e546000ca1c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 30
+  gravityDown: 10
+  root: {fileID: 106790115311484948}
+  tip: {fileID: 106790115311484948}
+  radius: 0.01
+  hittableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  impackVfxPrefab: {fileID: 4260779743739990948, guid: bbe6bdea7cd168e428a309e9eb2e728b,
+    type: 3}
+  impactVfxLifeTime: 5
+  impactSfxClip: {fileID: 8300000, guid: 7d30b1415365653459bc76871e0b0545, type: 3}
+  damage: 20
+--- !u!114 &4365667792891970693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106790115311484953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe40f61e570a11d47a27d64ab5460a76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage:
+    Min: 80
+    Max: 350
+  Speed:
+    Min: 20
+    Max: 40
+  GravityDown:
+    Min: 10
+    Max: 3
+  Radius:
+    Min: 0.2
+    Max: 0.2
+--- !u!114 &6083676768477013058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106790115311484953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e62c89a0bf12364fbca8d4770efb3cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charageObejct: {fileID: 106790115311484953}
+  scale:
+    Min: {x: 0.5, y: 0.5, z: 0.5}
+    Max: {x: 0.8, y: 0.8, z: 0.8}
+--- !u!114 &6249137661770119905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106790115311484953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df6b9d752e19fea4e85b38be0d1118fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  areaOfEffectDistance: 5
+  damageRatioOverDistance:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.43972394
+      outSlope: -0.43972394
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.50607866
+      value: 0.7774651
+      inSlope: -0.901681
+      outSlope: -0.901681
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.4542079
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -1.5740666
+      outSlope: -1.5740666
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1945832826066038730
 GameObject:
   m_ObjectHideFlags: 0
