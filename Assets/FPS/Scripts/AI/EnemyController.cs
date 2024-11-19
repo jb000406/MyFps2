@@ -82,6 +82,9 @@ namespace Unity.FPS.AI
         public UnityAction OnDetectedTarget;
         public UnityAction OnLostTarget;
 
+        //Attack
+        public UnityAction OnAttack;
+
         private float orientSpeed = 10f;
 
         public bool IsTargetInAttackRange => DetectionModule.IsTargetInAttackRange;
@@ -94,12 +97,16 @@ namespace Unity.FPS.AI
         private WeaponController currentWeapon;
         private WeaponController[] weapons;
 
-
+        //enemymanager
+        private EnemyManager enemyManager;
         #endregion
 
         private void Start()
         {
             //참조
+            enemyManager = GameObject.FindObjectOfType<EnemyManager>();
+            enemyManager.RegisterEnemy(this);                           // //enemyManager 리스트에 제거
+
             Agent = GetComponent<NavMeshAgent>();
 
             actor = GetComponent<Actor>();
@@ -156,6 +163,7 @@ namespace Unity.FPS.AI
         {
             //디텍션
             //HandleTargetDetection();
+            DetectionModule.HandleTargetDetection(actor, selfColliders);
 
             //데미지 효과
             Color currentColor = OnHitBodyGradient.Evaluate((Time.time - lastTimeDamaged) / flashOnHitDuration);
@@ -190,6 +198,9 @@ namespace Unity.FPS.AI
 
         private void OnDie()
         {
+            //enemyManager 리스트에 제거
+            enemyManager.RemoveEnemy(this);
+
             //폭발 효과
             GameObject effectGo = Instantiate(deathVfxPrefab, deathVfxSpawnPostion.position, Quaternion.identity);
             Destroy(effectGo, 5f);
@@ -285,8 +296,6 @@ namespace Unity.FPS.AI
         {
             OnDetectedTarget?.Invoke();
 
-            Debug.Log("============================OnDetected");
-
             if (eyeRendererData.renderer)
             {
                 eyeColorMatarialPropertyBlock.SetColor("_EmissionColor", attackEyeColor);
@@ -299,8 +308,6 @@ namespace Unity.FPS.AI
         private void OnLost()
         {
             OnLostTarget?.Invoke();
-
-            Debug.Log("============================OnLost");
 
             if (eyeRendererData.renderer)
             {
@@ -348,8 +355,6 @@ namespace Unity.FPS.AI
                 SetCurrentWeapon(0);
             }
 
-
-
             return currentWeapon;
         }
 
@@ -364,10 +369,34 @@ namespace Unity.FPS.AI
 
         }
 
-        //공격
-        public void TryAttack(Vector3 targetPosition)
+        //공격 - 공격 성공, 실패
+        public bool TryAttack(Vector3 targetPosition)
         {
+            //무기 교체시 딜레이 시간동안 공격 불능
+            if(lastTimeWeaponSwapped + delayAfterWeaponSwap >= Time.time)
+            {
+                return false;
+            }
 
+            //무기 Shoot
+            bool didFire = GetCurrentWeapon().HandleShootInputs(false, true, false);
+
+            if (didFire && OnAttack != null)
+            {
+                OnAttack?.Invoke();
+
+                //발사를 한번 할때 마다 다음 무기로 교체
+                if(swapToNextWeapon == true && weapons.Length > 1)
+                {
+                    int nextWeaponIndex = currentWeaponIndex + 1% weapons.Length;
+                    SetCurrentWeapon(nextWeaponIndex);
+                }
+
+
+            }
+
+
+            return true;
         }
 
     }

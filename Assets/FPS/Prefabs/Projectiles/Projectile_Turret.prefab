@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3659995153115176982}
-  - component: {fileID: 3312087640704285263}
+  - component: {fileID: -7562085901077515150}
   m_Layer: 0
-  m_Name: Projectile_Hoverbot
+  m_Name: Projectile_Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   - {fileID: 8402172112652589804}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3312087640704285263
+--- !u!114 &-7562085901077515150
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,11 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce3940a4faba2ae4999e546000ca1c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
+  speed: 20
   gravityDown: 0
   root: {fileID: 3659995153115176982}
   tip: {fileID: 1135791333161367127}
-  radius: 0.1
+  radius: 0.01
   hittableLayers:
     serializedVersion: 2
     m_Bits: 4294967295

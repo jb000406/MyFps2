@@ -43,6 +43,11 @@ namespace Unity.FPS.AI
         //디텍팅
         public void HandleTargetDetection(Actor actor, Collider[] selfCollider)
         {
+            if(KnownDetectedTarget && !IsSeeingTarget && (Time.time - TimeLastSeenTarget) > knownTargetTimeout)
+            {
+                KnownDetectedTarget = null;
+            }
+
             float sqrDetectionRange = detectionRange * detectionRange;
             IsSeeingTarget = false;
             float closetSqrdistance = Mathf.Infinity;
@@ -69,6 +74,20 @@ namespace Unity.FPS.AI
                         {
                             cloestHit = hit;
                             foundValidHit = true;
+                        }
+                    }
+
+                    //적을 찾았으면
+                    if(foundValidHit )
+                    {
+                        Actor hitActor = cloestHit.collider.GetComponentInParent<Actor>();
+                        if(hitActor == otherActor)
+                        {
+                            IsSeeingTarget = true;
+                            closetSqrdistance = sqrDistance;
+
+                            TimeLastSeenTarget = Time.time;
+                            KnownDetectedTarget = otherActor.aimPoint.gameObject;
                         }
                     }
 

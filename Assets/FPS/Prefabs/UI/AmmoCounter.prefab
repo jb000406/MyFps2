@@ -196,7 +196,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
-  m_FillAmount: 0.559
+  m_FillAmount: 0.607
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -211,8 +211,8 @@ GameObject:
   m_Component:
   - component: {fileID: 645032500860478886}
   - component: {fileID: 645032500860478887}
-  - component: {fileID: 3268909784133744544}
-  - component: {fileID: 8684264634113539166}
+  - component: {fileID: 8370184092397687206}
+  - component: {fileID: -672505392867749975}
   m_Layer: 5
   m_Name: AmmoCounter
   m_TagString: Untagged
@@ -255,7 +255,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &3268909784133744544
+--- !u!114 &8370184092397687206
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,8 +272,8 @@ MonoBehaviour:
   ammoFillSharpness: 10
   canvasGroup: {fileID: 436243220387352472}
   unSelectedOpacity: 0.5
-  fillBarColorChange: {fileID: 8684264634113539166}
---- !u!114 &8684264634113539166
+  fillBarColorChange: {fileID: -672505392867749975}
+--- !u!114 &-672505392867749975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -289,8 +289,8 @@ MonoBehaviour:
   defaultForegroundColor: {r: 1, g: 1, b: 1, a: 1}
   flashForeGroundColorFull: {r: 0, g: 0, b: 0, a: 1}
   backgroundImage: {fileID: 645032499974091307}
-  defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 0.5019608}
-  flashBackgroundColorEmpty: {r: 1, g: 0, b: 0, a: 0.5019608}
+  defaultBackgroundColor: {r: 0, g: 0, b: 0, a: 0.49803922}
+  flashBackgroundColorEmpty: {r: 1, g: 0, b: 0, a: 0.49803922}
 --- !u!1 &1644869328222790790
 GameObject:
   m_ObjectHideFlags: 0
